@@ -1,0 +1,155 @@
+@import "tailwindcss";
+
+/*
+  Paleta Apple Modern (paleta-apple-modern.md):
+  #F5F5F7 fondo · #1D1D1F texto · #AAAAAA gris medio (bordes, iconos inactivos) · #007AFF acento.
+  El texto secundario usa un gris más oscuro que #AAAAAA para mantener el contraste.
+*/
+:root {
+  --canvas: #f5f5f7;
+  --surface: #ffffff;
+  --surface-2: #fafafc;
+  --ink: #1d1d1f;
+  --muted: #6e6e73;
+  --faint: #aaaaaa;
+  --line: #e3e3e8;
+  --brand: #007aff;
+  --brand-hover: #0066d6;
+  --brand-soft: #e5f1ff;
+  --on-brand: #ffffff;
+  --side: #1d1d1f;
+  --side-ink: #f5f5f7;
+  --side-muted: #aaaaaa;
+  --side-hover: rgb(255 255 255 / 0.08);
+
+  --ok: #3b7352;
+  --ok-soft: #e9f0ec;
+  --warn: #8f6a24;
+  --warn-soft: #f4ede0;
+  --crit: #a04137;
+  --crit-soft: #f4e5e2;
+  --crit-solid: #a94438;
+
+  --agua: #3a7ca5;
+  --energia: #b98a2e;
+  --materiales: #86614a;
+
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.04), 0 1px 3px rgb(0 0 0 / 0.04);
+  --shadow-md: 0 4px 12px rgb(0 0 0 / 0.06), 0 12px 32px rgb(0 0 0 / 0.06);
+  --shadow-lg: 0 8px 24px rgb(0 0 0 / 0.1), 0 24px 64px rgb(0 0 0 / 0.12);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --canvas: #000000;
+    --surface: #1c1c1e;
+    --surface-2: #232326;
+    --ink: #f5f5f7;
+    --muted: #a1a1a6;
+    --faint: #6e6e73;
+    --line: #2f2f33;
+    --brand: #0a84ff;
+    --brand-hover: #409cff;
+    --brand-soft: #0a2a4d;
+    --side: #111113;
+    --side-hover: rgb(255 255 255 / 0.07);
+
+    --ok: #86b79a;
+    --ok-soft: #1a2820;
+    --warn: #cfae6f;
+    --warn-soft: #2b2518;
+    --crit: #d68c80;
+    --crit-soft: #2f1f1c;
+    --crit-solid: #b5493d;
+
+    --agua: #7aa9c7;
+    --energia: #cfa860;
+    --materiales: #b39178;
+
+    --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.5);
+    --shadow-md: 0 4px 12px rgb(0 0 0 / 0.5), 0 12px 32px rgb(0 0 0 / 0.4);
+    --shadow-lg: 0 8px 24px rgb(0 0 0 / 0.6), 0 24px 64px rgb(0 0 0 / 0.5);
+  }
+}
+
+@theme inline {
+  --font-sans: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-soft: var(--brand-soft);
+  --color-on-brand: var(--on-brand);
+  --color-side: var(--side);
+  --color-side-ink: var(--side-ink);
+  --color-side-muted: var(--side-muted);
+  --color-side-hover: var(--side-hover);
+  --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-crit: var(--crit);
+  --color-crit-soft: var(--crit-soft);
+  --color-crit-solid: var(--crit-solid);
+  --color-agua: var(--agua);
+  --color-energia: var(--energia);
+  --color-materiales: var(--materiales);
+
+  --shadow-soft: var(--shadow-sm);
+  --shadow-card: var(--shadow-md);
+  --shadow-float: var(--shadow-lg);
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  margin: 0;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Cifras tabulares y alineadas a la derecha en tablas y tarjetas */
+.num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.rise {
+  animation: rise 0.28s ease-out both;
+}
