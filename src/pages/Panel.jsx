@@ -85,7 +85,7 @@ export default function Panel() {
         />
         <KpiCard
           icono={Coins}
-          color={tema.brand}
+          color={tema.ink}
           etiqueta="Costo del desperdicio"
           valor={cop(desperdicio.costo)}
           pie={<Variacion valor={desperdicio.variacion} texto={`vs ${previo}`} />}
@@ -93,7 +93,7 @@ export default function Panel() {
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-3">
-        <Card className="lg:col-span-2">
+        <Card className="flex flex-col lg:col-span-2">
           <CardHeader
             titulo="Consumo mensual"
             descripcion="Últimos 6 meses. La línea punteada es el promedio."
@@ -108,9 +108,11 @@ export default function Panel() {
               )
             }
           />
-          <div className="px-3 pb-5 sm:px-5">
+          <div className="flex-1 px-3 pb-5 sm:px-5">
             {serie ? (
-              <GraficoConsumo serie={serie} color={colorRecurso(serie.nombre, tema)} />
+              <div className="relative h-full min-h-72">
+                <GraficoConsumo llenar serie={serie} color={colorRecurso(serie.nombre, tema)} />
+              </div>
             ) : (
               <Vacio icono={Zap} titulo="Aún no hay recursos configurados" />
             )}

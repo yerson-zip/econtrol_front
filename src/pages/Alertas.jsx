@@ -55,7 +55,7 @@ export default function Alertas() {
               <li key={a.id} className="rise">
                 <Card className="flex flex-col gap-4 p-5 sm:flex-row sm:items-start sm:justify-between">
                   <div className="flex min-w-0 gap-4">
-                    <span className={`grid size-10 shrink-0 place-items-center rounded-xl ${critica ? 'bg-crit-soft text-crit' : 'bg-warn-soft text-warn'}`}>
+                    <span className={`grid size-10 shrink-0 place-items-center rounded-xl ${critica ? 'bg-crit-solid text-white' : 'bg-warn-soft text-warn'}`}>
                       <Icono className="size-5" aria-hidden="true" />
                     </span>
                     <div className="min-w-0">

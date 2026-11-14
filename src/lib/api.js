@@ -75,6 +75,7 @@ export const api = {
   get: (path, params) => peticion(path, { params }),
   post: (path, body) => peticion(path, { method: 'POST', body: body ?? {} }),
   patch: (path, body) => peticion(path, { method: 'PATCH', body }),
+  delete: (path) => peticion(path, { method: 'DELETE' }),
   /** Descarga un archivo autenticado (PDF, Excel) y dispara el guardado en el navegador. */
   async descargar(path, params, nombre) {
     const archivo = await peticion(path, { params, blob: true })

@@ -59,7 +59,7 @@ export function CardHeader({ titulo, descripcion, acciones, icono: Icono }) {
           {descripcion && <p className="mt-0.5 text-[13px] text-muted">{descripcion}</p>}
         </div>
       </div>
-      {acciones && <div className="flex items-center gap-2">{acciones}</div>}
+      {acciones && <div className="flex items-center gap-2 self-center">{acciones}</div>}
     </header>
   )
 }
@@ -80,7 +80,7 @@ export function PageHeader({ titulo, descripcion, acciones }) {
 const TONOS = {
   ok: 'bg-ok-soft text-ok',
   warn: 'bg-warn-soft text-warn',
-  crit: 'bg-crit-soft text-crit',
+  crit: 'bg-crit-solid text-white',
   brand: 'bg-brand-soft text-brand',
   neutral: 'bg-canvas text-muted',
 }
@@ -88,7 +88,7 @@ const TONOS = {
 /** El estado siempre lleva texto, no solo color. */
 export function Badge({ tono = 'neutral', icono: Icono, children }) {
   return (
-    <span className={cx('inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium', TONOS[tono])}>
+    <span className={cx('inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium whitespace-nowrap', TONOS[tono])}>
       {Icono && <Icono className="size-3" aria-hidden="true" />}
       {children}
     </span>
@@ -155,7 +155,7 @@ export function Field({ label, hint, error, children, className }) {
       </label>
       {children(id)}
       {error ? (
-        <p className="text-xs text-crit">{error}</p>
+        <p className="text-xs font-medium text-crit">{error}</p>
       ) : (
         hint && <p className="text-xs text-muted">{hint}</p>
       )}

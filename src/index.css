@@ -6,33 +6,53 @@
   El texto secundario usa un gris más oscuro que #AAAAAA para mantener el contraste.
 */
 :root {
-  --canvas: #f5f5f7;
+  --blue-50: #ebf4ff;
+  --blue-100: #d6e9ff;
+  --blue-200: #add3ff;
+  --blue-300: #7ab8ff;
+  --blue-400: #3d98ff;
+  --blue-500: #007aff;
+  --blue-600: #0062cc;
+  --blue-700: #004a99;
+  --blue-800: #003166;
+  --blue-900: #001933;
+
+  --gray-50: #f5f5f7;
+  --gray-100: #e8e8ed;
+  --gray-200: #d2d2d7;
+  --gray-300: #aaaaaa;
+  --gray-400: #86868b;
+  --gray-500: #6e6e73;
+  --gray-600: #424245;
+  --gray-700: #2c2c2e;
+  --gray-800: #1d1d1f;
+
+  --canvas: var(--gray-50);
   --surface: #ffffff;
   --surface-2: #fafafc;
-  --ink: #1d1d1f;
-  --muted: #6e6e73;
-  --faint: #aaaaaa;
-  --line: #e3e3e8;
-  --brand: #007aff;
-  --brand-hover: #0066d6;
-  --brand-soft: #e5f1ff;
+  --ink: var(--gray-800);
+  --muted: var(--gray-500);
+  --faint: var(--gray-300);
+  --line: var(--gray-100);
+  --brand: var(--blue-500);
+  --brand-hover: var(--blue-600);
+  --brand-soft: var(--blue-50);
   --on-brand: #ffffff;
-  --side: #1d1d1f;
-  --side-ink: #f5f5f7;
-  --side-muted: #aaaaaa;
+  --side: var(--gray-800);
+  --side-ink: var(--gray-50);
+  --side-muted: var(--gray-300);
   --side-hover: rgb(255 255 255 / 0.08);
 
-  --ok: #3b7352;
-  --ok-soft: #e9f0ec;
-  --warn: #8f6a24;
-  --warn-soft: #f4ede0;
-  --crit: #a04137;
-  --crit-soft: #f4e5e2;
-  --crit-solid: #a94438;
+  --ok: var(--gray-500);
+  --ok-soft: #ededf0;
+  --warn: var(--blue-700);
+  --warn-soft: var(--blue-100);
+  --crit: var(--blue-700);
+  --crit-solid: var(--blue-700);
 
-  --agua: #3a7ca5;
-  --energia: #b98a2e;
-  --materiales: #86614a;
+  --agua: var(--blue-400);
+  --energia: var(--blue-600);
+  --materiales: var(--blue-800);
 
   --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.04), 0 1px 3px rgb(0 0 0 / 0.04);
   --shadow-md: 0 4px 12px rgb(0 0 0 / 0.06), 0 12px 32px rgb(0 0 0 / 0.06);
@@ -41,30 +61,28 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --canvas: #000000;
-    --surface: #1c1c1e;
-    --surface-2: #232326;
-    --ink: #f5f5f7;
+    --canvas: #101012;
+    --surface: var(--gray-800);
+    --surface-2: #242427;
+    --ink: var(--gray-50);
     --muted: #a1a1a6;
-    --faint: #6e6e73;
-    --line: #2f2f33;
+    --faint: var(--gray-500);
+    --line: #2e2e32;
     --brand: #0a84ff;
     --brand-hover: #409cff;
-    --brand-soft: #0a2a4d;
-    --side: #111113;
-    --side-hover: rgb(255 255 255 / 0.07);
+    --brand-soft: #0d2b4f;
+    --side: #161618;
 
-    --ok: #86b79a;
-    --ok-soft: #1a2820;
-    --warn: #cfae6f;
-    --warn-soft: #2b2518;
-    --crit: #d68c80;
-    --crit-soft: #2f1f1c;
-    --crit-solid: #b5493d;
+    --ok: #a1a1a6;
+    --ok-soft: #2a2a2d;
+    --warn: var(--blue-300);
+    --warn-soft: #0d2b4f;
+    --crit: var(--blue-300);
+    --crit-solid: var(--blue-600);
 
-    --agua: #7aa9c7;
-    --energia: #cfa860;
-    --materiales: #b39178;
+    --agua: var(--blue-300);
+    --energia: #0a84ff;
+    --materiales: var(--blue-600);
 
     --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.5);
     --shadow-md: 0 4px 12px rgb(0 0 0 / 0.5), 0 12px 32px rgb(0 0 0 / 0.4);
@@ -75,6 +93,17 @@
 @theme inline {
   --font-sans: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --color-blue-50: var(--blue-50);
+  --color-blue-100: var(--blue-100);
+  --color-blue-200: var(--blue-200);
+  --color-blue-300: var(--blue-300);
+  --color-blue-400: var(--blue-400);
+  --color-blue-500: var(--blue-500);
+  --color-blue-600: var(--blue-600);
+  --color-blue-700: var(--blue-700);
+  --color-blue-800: var(--blue-800);
+  --color-blue-900: var(--blue-900);
 
   --color-canvas: var(--canvas);
   --color-surface: var(--surface);
@@ -96,7 +125,6 @@
   --color-warn: var(--warn);
   --color-warn-soft: var(--warn-soft);
   --color-crit: var(--crit);
-  --color-crit-soft: var(--crit-soft);
   --color-crit-solid: var(--crit-solid);
   --color-agua: var(--agua);
   --color-energia: var(--energia);

@@ -63,17 +63,18 @@ export default function Login() {
   return (
     <div className="min-h-screen lg:grid lg:grid-cols-[1.05fr_1fr]">
       {/* Escritorio: panel de marca */}
-      <aside className="relative hidden flex-col justify-between overflow-hidden border-r border-white/10 bg-side p-12 text-side-ink lg:flex xl:p-16">
+      <aside className="relative hidden flex-col overflow-hidden bg-side p-12 text-side-ink lg:flex xl:p-16">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgb(0_122_255/0.22),transparent_60%)]" />
         <div aria-hidden="true" className={`pointer-events-none absolute inset-0 ${PUNTOS}`} />
         <Logo oscuro className="relative" />
-        <div className="relative">
+        <div className="relative my-auto py-12">
           <h1 className="max-w-lg text-[40px] leading-[1.1] font-bold tracking-tight text-balance xl:text-[44px]">
             Controla el agua, la energía y los materiales de tu empresa.
           </h1>
           <p className="mt-4 max-w-md text-base leading-relaxed text-side-muted">
             Detecta el desperdicio a tiempo y míralo en pesos, antes de que llegue la factura.
           </p>
-          <div className="mt-10">
+          <div className="mt-9">
             <VistaPrevia />
           </div>
         </div>

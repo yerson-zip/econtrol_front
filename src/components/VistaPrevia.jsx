@@ -48,7 +48,7 @@ export function VistaPrevia() {
             <span className="text-sm text-side-muted">kWh</span>
           </p>
         </div>
-        <span className="inline-flex items-center gap-1 rounded-full bg-crit-soft px-2.5 py-1 text-xs font-medium text-crit">
+        <span className="inline-flex items-center gap-1 rounded-full bg-blue-400/15 px-2.5 py-1 text-xs font-medium text-blue-300">
           <ArrowUpRight className="size-3" aria-hidden="true" />
           +16,5 %
         </span>
@@ -57,8 +57,8 @@ export function VistaPrevia() {
       <svg viewBox={`0 0 ${W} ${H}`} className="mt-4 w-full" role="presentation">
         <defs>
           <linearGradient id="vp-area" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="var(--energia)" stopOpacity="0.28" />
-            <stop offset="1" stopColor="var(--energia)" stopOpacity="0" />
+            <stop offset="0" stopColor="var(--blue-400)" stopOpacity="0.32" />
+            <stop offset="1" stopColor="var(--blue-400)" stopOpacity="0" />
           </linearGradient>
         </defs>
         <line x1={X0} x2={X1} y1={y(PROMEDIO)} y2={y(PROMEDIO)} stroke="#aaaaaa" strokeOpacity="0.55" strokeDasharray="4 5" />
@@ -66,12 +66,12 @@ export function VistaPrevia() {
           promedio
         </text>
         <path d={`${trazo} L${X1},${Y1} L${X0},${Y1} Z`} fill="url(#vp-area)" />
-        <path d={trazo} fill="none" stroke="var(--energia)" strokeWidth="2.5" strokeLinecap="round" />
+        <path d={trazo} fill="none" stroke="var(--blue-400)" strokeWidth="2.5" strokeLinecap="round" />
         {pts.slice(0, -1).map(([cx, cy], i) => (
-          <circle key={MESES[i]} cx={cx} cy={cy} r="3" fill="var(--side)" stroke="var(--energia)" strokeWidth="2" />
+          <circle key={MESES[i]} cx={cx} cy={cy} r="3" fill="var(--side)" stroke="var(--blue-400)" strokeWidth="2" />
         ))}
-        <circle cx={ultimo[0]} cy={ultimo[1]} r="9" fill="var(--crit)" fillOpacity="0.2" />
-        <circle cx={ultimo[0]} cy={ultimo[1]} r="4.5" fill="var(--crit)" stroke="var(--side)" strokeWidth="2" />
+        <circle cx={ultimo[0]} cy={ultimo[1]} r="9" fill="var(--blue-400)" fillOpacity="0.25" />
+        <circle cx={ultimo[0]} cy={ultimo[1]} r="4.5" fill="var(--blue-300)" stroke="var(--side)" strokeWidth="2" />
         {MESES.map((m, i) => (
           <text key={m} x={x(i)} y={H - 8} textAnchor={i === 0 ? 'start' : i === MESES.length - 1 ? 'end' : 'middle'} fontSize="11" fill="#aaaaaa">
             {m}
@@ -80,7 +80,7 @@ export function VistaPrevia() {
       </svg>
 
       <figcaption className="mt-4 flex items-start gap-3 rounded-xl bg-white/[0.05] p-3.5">
-        <TriangleAlert className="mt-0.5 size-4 shrink-0 text-crit" aria-hidden="true" />
+        <TriangleAlert className="mt-0.5 size-4 shrink-0 text-blue-300" aria-hidden="true" />
         <p className="text-[13px] leading-snug text-side-ink">
           Consumo por encima del promedio. Costo adicional estimado:{' '}
           <span className="num font-medium">$ 674.500</span>

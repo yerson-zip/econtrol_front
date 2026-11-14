@@ -21,8 +21,8 @@ export const mesLargo = (mes) =>
   mes ? new Date(`${mes}-01T00:00:00Z`).toLocaleDateString(LOCALE, { month: 'long', year: 'numeric', timeZone: 'UTC' }) : ''
 
 /** "2026-10" → "oct" */
-export const mesCorto = (mes) =>
-  new Date(`${mes}-01T00:00:00Z`).toLocaleDateString(LOCALE, { month: 'short', timeZone: 'UTC' }).replace('.', '')
+const MESES_CORTOS = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic']
+export const mesCorto = (mes) => MESES_CORTOS[Number(mes.slice(5, 7)) - 1]
 
 /** "2026-10-08" → "8 oct 2026" */
 export const fechaCorta = (f) =>
