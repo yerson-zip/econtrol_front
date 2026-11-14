@@ -6,6 +6,7 @@ import { mensajeDe } from '../lib/api'
 import { Aviso, Field, Input, Segmentado } from '../components/ui'
 import { Logo } from '../components/Logo'
 import { VistaPrevia } from '../components/VistaPrevia'
+import { BotonTema, useTemaActual } from '../components/Tema'
 
 const CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID
 const PIE = 'Universidad Cooperativa de Colombia · Ingeniería de Sistemas'
@@ -34,7 +35,7 @@ export default function Login() {
     return () => obs.disconnect()
   }, [])
 
-  const oscuro = window.matchMedia?.('(prefers-color-scheme: dark)').matches
+  const tema = useTemaActual()
 
   async function alRecibirCredencial({ credential }) {
     setError('')
@@ -81,7 +82,8 @@ export default function Login() {
         <p className="relative text-xs text-side-muted">{PIE}</p>
       </aside>
 
-      <main className="flex min-h-screen flex-col bg-canvas px-5 py-6 sm:px-10 lg:min-h-0 lg:justify-center lg:py-12">
+      <main className="relative flex min-h-screen flex-col bg-canvas px-5 py-6 sm:px-10 lg:min-h-0 lg:justify-center lg:py-12">
+        <BotonTema className="absolute top-4 right-4 text-muted hover:bg-line hover:text-ink sm:right-8 lg:top-6" />
         <Logo className="lg:hidden" />
 
         <div className="mx-auto flex w-full max-w-sm flex-1 flex-col justify-center pt-10 pb-24 lg:flex-none lg:py-0">
@@ -129,14 +131,15 @@ export default function Login() {
             </div>
           )}
 
-          <div ref={caja} className={`mt-6 flex justify-center ${enviando ? 'pointer-events-none opacity-60' : ''}`}>
+          <div ref={caja} style={{ colorScheme: 'light' }} className={`mt-6 flex justify-center ${enviando ? 'pointer-events-none opacity-60' : ''}`}>
             {CLIENT_ID ? (
               <GoogleLogin
+                key={tema}
                 onSuccess={alRecibirCredencial}
                 onError={() => setError('No se pudo completar el acceso con Google. Inténtalo de nuevo.')}
                 text={modo === 'entrar' ? 'signin_with' : 'signup_with'}
                 locale="es"
-                theme={oscuro ? 'filled_black' : 'outline'}
+                theme={tema === 'oscuro' ? 'filled_black' : 'outline'}
                 shape="pill"
                 size="large"
                 width={String(ancho)}

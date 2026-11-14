@@ -14,14 +14,13 @@ const leerTema = () => {
   return Object.fromEntries(VARS.map((v) => [v, css.getPropertyValue(`--${v}`).trim()]))
 }
 
-/** Colores del tema actual; se actualiza si el sistema cambia entre claro y oscuro. */
+/** Colores del tema actual; se actualiza al cambiar entre claro y oscuro. */
 export function useTema() {
   const [tema, setTema] = useState(leerTema)
   useEffect(() => {
-    const mq = window.matchMedia('(prefers-color-scheme: dark)')
-    const alCambiar = () => setTema(leerTema())
-    mq.addEventListener('change', alCambiar)
-    return () => mq.removeEventListener('change', alCambiar)
+    const obs = new MutationObserver(() => setTema(leerTema()))
+    obs.observe(document.documentElement, { attributes: true, attributeFilter: ['data-tema'] })
+    return () => obs.disconnect()
   }, [])
   return tema
 }

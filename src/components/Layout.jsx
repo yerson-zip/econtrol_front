@@ -5,6 +5,7 @@ import { AlertasProvider, useAlertasAbiertas } from '../context/AlertasContext'
 import { NAV } from '../lib/nav'
 import { ROLES } from '../lib/format'
 import { Logo } from './Logo'
+import { BotonTema } from './Tema'
 
 function Avatar({ usuario }) {
   const iniciales = usuario.nombre
@@ -80,6 +81,7 @@ function Estructura() {
             <p className="truncate text-sm font-medium text-side-ink">{usuario.nombre}</p>
             <p className="text-xs text-side-muted">{ROLES[usuario.rol]}</p>
           </div>
+          <BotonTema className="text-side-muted hover:bg-side-hover hover:text-side-ink" />
           <button
             type="button"
             onClick={logout}
@@ -98,6 +100,7 @@ function Estructura() {
           <Logo oscuro />
           <div className="flex items-center gap-2">
             <Avatar usuario={usuario} />
+            <BotonTema className="text-side-muted hover:text-side-ink" />
             <button
               type="button"
               onClick={logout}
