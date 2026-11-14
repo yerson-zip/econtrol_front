@@ -11,18 +11,18 @@ import {
 } from '../components/ui'
 
 const ESTADOS = {
-  'Bajo mínimo': { tono: 'crit', icono: OctagonAlert, barra: 'bg-crit' },
-  'Cerca del mínimo': { tono: 'warn', icono: TriangleAlert, barra: 'bg-warn' },
-  Suficiente: { tono: 'ok', icono: CircleCheck, barra: 'bg-ok' },
+  'Bajo mínimo': { tono: 'crit', icono: OctagonAlert, barra: 'bg-crit-solid' },
+  'Cerca del mínimo': { tono: 'warn', icono: TriangleAlert, barra: 'bg-brand' },
+  Suficiente: { tono: 'ok', icono: CircleCheck, barra: 'bg-faint' },
 }
 
 /** La marca vertical indica dónde está el stock mínimo (la barra llega al doble del mínimo). */
 function BarraNivel({ nivel, estado }) {
   const ancho = Math.min((nivel ?? 2) / 2, 1) * 100
   return (
-    <div className="relative h-2 w-28 overflow-hidden rounded-full bg-canvas" role="presentation">
+    <div className="relative h-2 w-28 overflow-hidden rounded-full bg-line" role="presentation">
       <div className={`h-full rounded-full ${ESTADOS[estado].barra}`} style={{ width: `${ancho}%` }} />
-      <span className="absolute inset-y-0 left-1/2 w-px bg-ink/40" />
+      <span className="absolute inset-y-0 left-1/2 w-px bg-ink/50" />
     </div>
   )
 }
@@ -65,7 +65,7 @@ export default function Inventario() {
           <Tabla className="rounded-2xl">
             <thead>
               <tr>
-                <Th>Material</Th>
+                <Th className="min-w-48">Material</Th>
                 <Th derecha>Existencia</Th>
                 <Th derecha>Mínimo</Th>
                 <Th>Nivel</Th>
@@ -78,12 +78,16 @@ export default function Inventario() {
               {datos.map((m) => {
                 const e = ESTADOS[m.estado]
                 return (
-                  <tr key={m.id}>
-                    <Td className="font-medium">{m.nombre}</Td>
+                  <tr key={m.id} className="group transition-colors hover:bg-canvas/70">
+                    <Td className="font-medium whitespace-nowrap">{m.nombre}</Td>
                     <Td num>
-                      {num(m.existencia, 1)} <span className="text-muted">{m.unidad}</span>
+                      {num(m.existencia, 1)}
+                      <span className="ml-1.5 inline-block w-11 text-left text-muted">{m.unidad}</span>
                     </Td>
-                    <Td num>{num(m.stock_minimo, 1)}</Td>
+                    <Td num>
+                      {num(m.stock_minimo, 1)}
+                      <span className="ml-1.5 inline-block w-11 text-left text-muted">{m.unidad}</span>
+                    </Td>
                     <Td>
                       <BarraNivel nivel={m.nivel} estado={m.estado} />
                     </Td>
@@ -95,7 +99,7 @@ export default function Inventario() {
                     </Td>
                     {(puedeMover || esAdmin) && (
                       <Td>
-                        <div className="flex justify-end gap-1.5">
+                        <div className="flex justify-end gap-1.5 transition-opacity group-focus-within:opacity-100 group-hover:opacity-100 [@media(hover:hover)]:opacity-0">
                           {puedeMover && (
                             <>
                               <Button tam="sm" variante="secondary" icono={ArrowUpFromLine} onClick={() => setMovimiento({ material: m, tipo: 'salida' })}>
@@ -110,7 +114,7 @@ export default function Inventario() {
                             <button
                               type="button"
                               onClick={() => setEdicion(m)}
-                              className="rounded-lg p-2 text-faint transition-colors hover:bg-canvas hover:text-brand"
+                              className="rounded-lg p-2 text-muted transition-colors hover:bg-line hover:text-brand"
                               aria-label={`Editar ${m.nombre}`}
                             >
                               <Pencil className="size-4" aria-hidden="true" />

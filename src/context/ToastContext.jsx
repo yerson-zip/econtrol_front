@@ -5,9 +5,9 @@ const ToastContext = createContext(null)
 export const useToast = () => useContext(ToastContext)
 
 const ESTILOS = {
-  ok: { icono: CircleCheck, color: 'text-ok' },
+  ok: { icono: CircleCheck, color: 'text-brand' },
   error: { icono: OctagonAlert, color: 'text-crit' },
-  info: { icono: Info, color: 'text-brand' },
+  info: { icono: Info, color: 'text-muted' },
 }
 
 export function ToastProvider({ children }) {

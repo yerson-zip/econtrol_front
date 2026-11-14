@@ -26,7 +26,7 @@ function Contador({ n }) {
   if (!n) return null
   return (
     <span
-      className="ml-auto min-w-5 rounded-full bg-crit-solid px-1.5 text-center text-[11px] leading-5 font-semibold text-white"
+      className="ml-auto min-w-5 rounded-full bg-side-ink px-1.5 text-center text-[11px] leading-5 font-semibold text-side"
       aria-label={`${n} alertas abiertas`}
     >
       {n}
@@ -122,7 +122,7 @@ function Estructura() {
               <Icono className="size-4" aria-hidden="true" />
               {etiqueta}
               {contador && abiertas > 0 && (
-                <span className="rounded-full bg-crit-solid px-1.5 text-[11px] leading-4 text-white">{abiertas}</span>
+                <span className="rounded-full bg-side-ink px-1.5 text-[11px] leading-4 font-semibold text-side">{abiertas}</span>
               )}
             </NavLink>
           ))}

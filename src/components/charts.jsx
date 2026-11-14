@@ -26,7 +26,7 @@ export function useTema() {
   return tema
 }
 
-/** Agua azul, energía ámbar, materiales café; cualquier otro recurso usa el color de materiales. */
+/** Cada recurso usa un tono distinto de la escala azul; cualquier otro recurso usa el tono de materiales. */
 export const colorRecurso = (nombre, tema) => {
   const n = nombre.toLowerCase()
   return n.includes('agua') ? tema.agua : n.includes('energ') ? tema.energia : tema.materiales
@@ -36,6 +36,7 @@ const base = (tema) => ({
   responsive: true,
   maintainAspectRatio: false,
   interaction: { mode: 'index', intersect: false },
+  layout: { padding: { top: 10, right: 6 } },
   plugins: {
     legend: { display: false },
     tooltip: {
@@ -53,6 +54,7 @@ const base = (tema) => ({
     x: { grid: { display: false }, border: { display: false }, ticks: { color: tema.muted, font: { family: 'Public Sans' } } },
     y: {
       beginAtZero: false,
+      grace: '10%',
       grid: { color: tema.line },
       border: { display: false },
       ticks: { color: tema.muted, font: { family: 'IBM Plex Mono', size: 11 }, callback: (v) => num(v) },
@@ -61,7 +63,7 @@ const base = (tema) => ({
 })
 
 /** Consumo mensual de un recurso con su línea de promedio. */
-export function GraficoConsumo({ serie, color }) {
+export function GraficoConsumo({ serie, color, llenar = false }) {
   const tema = useTema()
   const etiquetas = serie.puntos.map((p) => mesCorto(p.mes))
   const opciones = base(tema)
@@ -69,7 +71,7 @@ export function GraficoConsumo({ serie, color }) {
     label: (c) => ` ${c.dataset.label}: ${num(c.parsed.y, 1)} ${serie.unidad}`,
   }
   return (
-    <div className="h-64 sm:h-72" role="img" aria-label={`Consumo mensual de ${serie.nombre}`}>
+    <div className={llenar ? 'absolute inset-0' : 'h-64 sm:h-72'} role="img" aria-label={`Consumo mensual de ${serie.nombre}`}>
       <Line
         options={opciones}
         data={{
