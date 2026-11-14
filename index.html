@@ -13,6 +13,16 @@
       rel="stylesheet"
     />
     <title>EcoControl</title>
+    <script>
+      (function () {
+        var t = null
+        try {
+          t = localStorage.getItem('ecocontrol-tema')
+        } catch (e) {}
+        if (t !== 'claro' && t !== 'oscuro') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'oscuro' : 'claro'
+        document.documentElement.dataset.tema = t
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>
